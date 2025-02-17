@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>1g-1j exercise</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <div class="js-second-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"> </script>
+    <script type="text/babel">
+
+      const today = dayjs().format('MMMM D');
+      
+      const p = <p>Today is {today}</p>;
+   
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(p);
+
+      const containerTwo = document.querySelector('.js-second-container');
+      const root = ReactDOM.createRoot(containerTwo);
+
+      // with this 3 lines of code, we are displaying the current time immediately 
+      const currentTime = dayjs().format('HH:mm:ss');
+      const p2 = <p>Current time: {currentTime}</p>;
+      root.render(p2);
+
+      //here we are updating the time every second
+      setInterval(() => {
+        const currentTime = dayjs().format('HH:mm:ss');
+        const p2 = <p>Current time: {currentTime}</p>;
+        root.render(p2);
+      }, 1000);
+
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>4a-4c exercise</title>
+
+    <style>
+      .button-switcher-green {
+        background-color: rgb(25, 135, 84);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 14px;
+      }
+
+      .button-switcher-red {
+        background-color: rgb(220, 53, 69);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 8px 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      
+
+      function App() {
+
+        const [buttonType, setButtonType] = React.useState(false);
+
+        function switchButton() {
+          if (buttonType === false) {
+            setButtonType(true);
+          }
+          else {
+            setButtonType(false);
+          }
+        }
+
+        
+
+        
+
+
+
+        return (
+          <>
+            
+          <button 
+              className={buttonType ? 'button-switcher-green' : 'button-switcher-red'}
+              onClick={switchButton}
+          >
+            {buttonType ? 'on' : 'off'}
+          </button> 
+            
+            
+
+          </>
+        )
+      }
+
+      
+      
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

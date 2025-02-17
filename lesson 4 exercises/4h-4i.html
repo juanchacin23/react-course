@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>4h-4i exercise</title>
+    <style>
+
+      body {
+
+        margin-top: 0px;
+        margin-bottom: 0px;
+
+      }
+
+      .counter-buttons-container {
+        display: flex;
+        background-color: rgb(222, 222, 222);
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+         
+      }
+
+      .clicked-count-button, .reset-count-button, .auto-click-button {
+        background-color: rgb(25, 135, 84);
+        color: white;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 2px;
+        margin-right: 8px;
+        cursor: pointer;
+
+      }
+
+      .clicked-count-button:hover, .reset-count-button:hover, .auto-click-button:hover {
+       opacity: 0.8;
+       transition: 0.5s;
+
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      
+
+      function App() {
+
+        const [count, setCount] = React.useState(0);
+
+        const autoClickRef = React.useRef();
+
+         
+        function autoClick() {
+          setInterval(() => {
+            
+            const buttonElem = autoClickRef.current;
+
+            if (buttonElem) {
+              buttonElem.click();
+            }
+          }, 1000);
+        }
+
+        function increaseCount() {
+          setCount(count + 1);  
+        }
+
+        function resetCount() {
+          setCount(0);
+        }
+
+
+        return (
+          <div className="counter-buttons-container">
+            <button 
+              onClick={increaseCount} 
+              ref={autoClickRef} 
+              className="clicked-count-button"
+            > 
+                Clicked {count} {count === 1 ? 'time' : 'times'}
+              
+            </button>
+            
+            <button 
+              onClick={resetCount}
+              className="reset-count-button"
+            >
+                Reset
+            </button>
+
+            <button 
+              onClick={autoClick}
+              className="auto-click-button"
+            >
+              Auto Click
+            </button>
+          </div>
+        )
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

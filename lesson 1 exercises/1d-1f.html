@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>1d-1f exercise</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      
+    const packOfSocks = 10;
+
+    const Tshirts = 8;
+
+    const shippingCost = 5;
+
+    let totalProductCost = packOfSocks + (2 * Tshirts);
+
+    const totalCost = totalProductCost + shippingCost;
+
+    const paragraph = <p>Product cost: ${totalProductCost}</p>;
+
+    const div = (
+      <div>
+        <p>Product cost: ${totalProductCost}</p>
+        <p>Shipping cost: ${shippingCost}</p>
+        <p>Total cost: ${totalCost}</p>
+        <button>Place your order </button>
+      </div>
+    )
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(div);
+
+  
+
+
+    </script>
+  </body>
+</html>

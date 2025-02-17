@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    <div class="js-second-container"></div>
+    <div class="js-third-container"></div>
+    <div class="js-fourth-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+
+      const button = <button>hello</button>;
+      const paragraph = <p>paragraph of text</p>;
+
+
+      const div = (
+        <div>
+          <button>hello</button>
+          <p>paragraph of text</p>
+        </div>
+      );
+
+
+      const divTwo = (
+                    <div>
+                      <p>Cotton socks</p>
+                      <p>Price: $10</p>
+                      <button>Add to Cart</button>
+                    </div>
+                      );
+
+      const buttonTwo = <button>Good job!</button>;
+
+      const name = 'Juan';
+
+      const paragraphTwo = <p> My name is {name} </p>;
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(div);
+
+      const containerTwo = document.querySelector('.js-second-container');
+      ReactDOM.createRoot(containerTwo).render(buttonTwo);
+
+      const containerThird = document.querySelector('.js-third-container');
+      ReactDOM.createRoot(containerThird).render(paragraphTwo);
+
+      const containerFourth = document.querySelector('.js-fourth-container');
+      ReactDOM.createRoot(containerFourth).render(divTwo);
+
+
+    </script>
+  </body>
+</html>

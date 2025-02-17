@@ -1,0 +1,23 @@
+.form-login-button, .form-sign-up-button {
+  background-color: rgb(0, 123, 255);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 18px;
+  margin-right: 6px;
+  border-radius: 6px;
+}
+
+.form-login-button:hover, .form-sign-up-button:hover {
+  opacity: 0.8;
+}
+
+
+.email-input-form, .password-input-form {
+
+  padding: 10px 20px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border-width: 1px;
+  margin-right: 10px;
+}

@@ -1,0 +1,709 @@
+First lesson
+
+ReactDOM.createRoot   -> basically sets up react
+
+to set up react, we have to give him an html element
+
+
+this html element its gonna act like a container and everything that we create with react will be inside him.
+
+
+Been using a container it keeps things organize because react will not affect anything outside that container (isolate things)
+
+FEATURES OF REACT
+
+.render()  -> render means display something. This feature let us display something inside a container
+
+here is an example about how to use it
+
+<html>
+  <head>
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const container = document.querySelector('.js-container');  -> this is the container 
+      ReactDOM.createRoot(container).render('Welcome to SuperSimpleDev React Course');  -> here we are using the renderfun 
+    </script>
+  </body>
+</html>
+
+
+the parameter between the brackets in render we are gonna tell react what to display inside the container
+
+
+BABEL LIBRARY
+
+Babel is a javaScript compiler, translate other languages into javaScript
+
+
+JSX 
+
+react use jsx (javaScript XML) this is same as javaScript, but we can write HTML directly in our javaScript code (would be javaScript with extra features)
+
+
+example of JSX 
+
+const button = <button>hello</button>;  -> this code is inside script element
+
+
+the regular way to create this button in javaScript is this way
+
+const button = document.createElement('button');
+button.innerHTML = 'hello';
+
+notice the difference
+
+
+PROBLEMS WITH JSX 
+
+-Web browser dont undertand JSX (to use JSX we need to translate it into javaScript, for that reason we use babel)
+
+
+example about how to use babel
+
+
+<script src="https://unpkg.com/supersimpledev/babel.js"></script>   -> here we load babel library
+<script type="text/babel">                                        -> here we tell babel translate the code from jsx to js 
+
+  const button = <button>hello</button>;
+  const paragraph = <p>paragraph of text</p>; 
+
+    </script>                                             -> all the code inside this, will be translate it from jsx to js
+
+
+
+MORE FEATURES OF REACT
+
+we can display html elements inside containers using the render function
+
+example
+
+<script>
+  const button = <button>hello</button>;
+
+  const container = document.querySelector('.js-container');
+  ReactDOM.createRoot(container).render(button);  -> here we are using render method to put inside the container 
+                                                  ->the button variable.
+</script>
+
+the html would be this
+
+<div class="js-container"> <button>hello</button> </div>
+
+
+HOW TO USE REACT TO DISPLAY MULTIPLE ELEMENTS ON THE WEBSITE
+
+note: the method render can receive more than one parameter. We can't save more than 1 html in a variable.
+
+
+to use react to display multiple elements we have to use the div element, because this element is considered one element
+
+example
+
+ const div = 
+      <div>
+        <button>hello</button>
+        <p>paragraph of text</p>
+      </div>;
+
+
+we can use brackets to get a better view of the values inside the variable
+
+example
+
+const div = (
+        <div>
+          <button>hello</button>
+          <p>paragraph of text</p>
+        </div>
+      );
+
+BENEFICTS OF REACT 
+
+1. Creating a website with react feels natural
+
+2. JSX let us find errors easier 
+
+3. We can insert values inside JSX elements
+
+example
+
+const div = (
+        <div>
+          <button>hello</button>
+          <p>paragraph of text {2 + 2}</p> -> here we are inserting js code into jsx (this is similar to
+                                           -> string interpolation) 
+        </div>
+      );
+
+LESSON 2 COMPONENTS AND PROPS
+
+
+COMPONENTS 
+
+is just a piece of the website
+
+when building a website: 
+
+-it is better to split up the website into pieces. 
+
+- so we can work on a small piece of the website at a time
+
+
+to create a component, we have to create a function like this
+
+function ChatInput() {
+
+}
+
+the Component name must start with a capital letter (or pascal case)
+
+This function must return an html (we use return statement).
+
+function ChatInput() {
+
+return (
+  <input></input>     -> JSX is more strict than normal HTML and for that reason all elements need a closing tag. 
+);
+}
+
+In JSX we have a shortcut call self-closing element and it looks like this
+
+function ChatInput() {
+
+return (
+  <input />      -> self-closing element
+);
+}
+
+we can only return one html element from a component (if we need more than 1 html element, we need to use div to put the others element inside all we will return the div as an element (with the others elements inside))
+
+if we want to call the component into a variable or into html, this is a way to do that
+
+function ChatInput() {
+        return (
+          <div>
+            <input />
+            <button>Send</button>
+          </div>
+        );
+      }
+
+
+      const div = (
+        <div>
+          {ChatInput()}   -> here we are calling the component and for that reason we are receiving 
+                          ->the input and the button in our website
+        </div>
+      );
+
+
+there is a syntax shorcut to call components and is similar to been calling html elements. 
+
+here is the example
+
+const div = (
+        <div>
+          {ChatInput()}   -> instead of called like this
+          <ChatInput></ChatInput> -> we call the component like this, and it will do the same thing
+        </div>
+      );
+
+Doing that, basically we are creating html elements 
+
+we can also use the self-closing syntax because we don't have anything inside ChatInput element
+
+example
+
+const div = (
+        <div>
+          {ChatInput()}
+          <ChatInput /> -> using the shorcut
+        </div>
+      );
+
+using components, react lets us split our website into smaller pieces (this lets us work on a small piece of the website at a time)
+
+FRAGMENT
+
+another way to group elements together (instead of use div)
+
+example
+
+function ChatInput() {
+        return (
+          <>                      ->this is the shorcut fragment (using this, we are not adding div in our page)
+            <input />
+            <button>Send</button>
+          </>                     ->It's like create div without div jajaaj
+        );
+      }
+
+Components are designed to be reusable
+
+PROPS 
+
+is give attributes to our components
+
+props make our component reusable
+
+we can give atributes to components
+
+example
+
+ <ChatMessage message="hello chatbot"/>  -> this attribute is saved in a object as a property and the value 
+                                         -> inside the attribute is saved like a value of the property
+                                         -> we can also access to that attribute using the parameter of our component
+                                         -> this parameter always have props parameter where is being saving all this
+                                         -> atributes that we are creating
+
+
+here is another example
+
+function ChatMessage (props) {
+  console.log(props);                     -> in props, we are getting this object {message: hello chatbot}
+  return (
+    <div> 
+      hello chatbot
+      <img src="user.png" width="50"  /> 
+    </div>
+
+  );
+}
+
+<ChatMessage message="hello chatbot" /> 
+
+here is an example about how to use props 
+
+function ChatMessage(props) {
+        const message = props.message;        -> here we are getting the message from props
+        return (
+          <div>
+            {message}
+            <img src="user.png" width="50" />
+          </div>
+        );
+      }
+
+
+      const app = (
+        <>
+           
+          <ChatMessage message="hello chatbot" />
+          
+        </>
+      );
+    
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(app);
+
+here is an example about how to make our components reusable
+
+
+function ChatMessage(props) {
+        const message = props.message;
+        return (
+          <div>
+            {message}                                     -> in this variable we are calling the message (now We
+                                                          ->  have 2 messages) and creating 2 components with that
+            <img src="user.png" width="50" />
+          </div>
+        );
+      }
+
+      const app = (
+        <>
+          
+          <ChatMessage message="hello chatbot" />
+          <ChatMessage message=" Hello! How can I help you?" />     -> notice that we are using the same component 
+                                                                    ->with different message
+        </>
+      );
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(app);
+
+
+shortcuts in react
+
+like we saw in javaScript when we have an object, we can assign a name of a variable the same name of the object using curly brackets
+
+example
+
+const message = props.message;  - >this is the easy way
+
+const {message} = props;        -> using the destructuring shortcut
+
+
+how to use if statements directly in jsx brackets
+
+function ChatMessage({ message, sender }) {
+        
+        if (sender === 'robot') {
+            return (
+            <div>
+              <img src="robot.png" width="50" />
+              {message}
+            </div>
+          );     
+        }
+       
+        return (
+          <div>
+            {message}
+            <img src="user.png" width="50" />
+          </div>
+        );
+      }            -> this is the regular way to use if statement
+
+
+function ChatMessage({ message, sender }) {
+ 
+       
+        return (
+           <div>
+          {sender === 'robot' && <img src="robot.png" width="50" />}  -> here we are using the guard Operator
+                                                                      -> the guard operator consist if the first 
+                                                                      ->condition is true, will be pass to the second
+                                                                      ->condition, so basically if the value store in 
+                                                                      ->sender is the robot string, will pass to the second
+                                                                      ->condition 
+            {message}
+            <img src="user.png" width="50" />
+          </div>
+        );
+      }
+
+
+Best practice using components
+
+use a component called App to create the website (it give us access to props)
+
+
+we can have components inside components
+
+LESSON 3 STATE AND EVENT HANDLERS 
+
+We can use JS to generate components
+
+To reach this we have to follow 2 steps
+
+1. save the data (i mean, the information about the chat messages, for that we created an object using the properties of the component as properties in an object inside an array)
+
+2. Generate the HTML (basically we are generating the components using the map method, running the array and inserting the properties of the object that we have inside our array into a props for our component)
+
+.map function 
+goes through each value of an array (could be a simple value or an object), runs the function declares inside him , and converts it into a new value 
+
+STATE
+
+Data that is connected to the html. When we update this data, it will update the html.
+
+the way to convert regular data into state data is this way
+
+example
+React.useState([{                           -> we have to use React.useState method and send the data to that method
+          message: 'hello chatbot',
+          sender: 'user',
+          id: 'id1'
+        }, {
+          message: 'Hello! How can I help you?',
+          sender: 'robot',
+          id: 'id2'
+        }, {
+          message: 'can you get me todays date?',
+          sender: 'user',
+          id: 'id3'
+        }, {
+          message: 'Today is september 27',
+          sender: 'robot',
+          id: 'id4'
+        }]);
+
+use this method will return an new array with 2 values inside him
+
+the first value is the current data 
+
+example
+
+const array = React.useState([{                           
+          message: 'hello chatbot',
+          sender: 'user',
+          id: 'id1'
+        }, {
+          message: 'Hello! How can I help you?',
+          sender: 'robot',
+          id: 'id2'
+        }, {
+          message: 'can you get me todays date?',
+          sender: 'user',
+          id: 'id3'
+        }, {
+          message: 'Today is september 27',
+          sender: 'robot',
+          id: 'id4'
+        }]);
+
+const chatMessages = array[0];     -> this is the current data (first value after we use the method react.useState)
+
+const setChatMessages = array[1]  -> this is the second value an is a function that updates this data (recommend 
+                                  -> convention is start with set word)
+
+in react is not recommend update the data directly (because if we update the data directly, react will not update the html)
+
+if we use the second value of the array that we got using react.useState, react will update the html
+
+SPREAD OPERATOR (   ...   ) 
+
+takes the values in an array, and copies them into a new array
+
+
+array destructuring syntax
+
+is similar to the object destructuring syntax but in this case with the array
+
+example
+
+const array = React.useState([{
+          message: 'hello chatbot',
+          sender: 'user',
+          id: 'id1'
+        }, {
+          message: 'Hello! How can I help you?',
+          sender: 'robot',
+          id: 'id2'
+        }, {
+          message: 'can you get me todays date?',
+          sender: 'user',
+          id: 'id3'
+        }, {
+          message: 'Today is september 27',
+          sender: 'robot',
+          id: 'id4'
+        }]);
+        const [chatMessages, setChatMessages] = array;  -> this syntax is taking the first value of the array variable and 
+                                                        -> save it into chatMessages variable, and also is taking the 
+                                                        -> second value of the array and save it into setChatMessages
+                                                        -> the order matters 
+        const chatMessages = array[0];
+        const setChatMessages = array[1];
+
+
+
+LIFTING THE STATE UP
+
+to use this technique we need to visualize the components in our App
+
+we can visualize it using a tree to see how we seted up our components.
+
+The purpose of this, if we need to use 2 components or 2 declarations in 2 difference components that are connected through the app component, we need to lifting the state up and t6his will let us share state between multiple components
+
+
+details: we can save any type of value (array, object, string, function) inside a prop
+
+
+CONTROLLED INPUTS
+
+using the value property in the html, we can controlled the text inside a input
+
+
+details about state: 
+State does not update immediately
+
+State is updated after all of the code is finished
+
+
+
+LESSON 4: CSS, HOOKS
+
+
+
+Flex-grow = makes an element grow and take up the remaining space
+
+
+Hooks
+
+let us insert react features into our component
+
+we actually use some hooks before like React.useState()     -> This one inserts a react feature called State into our component and this feature automatically updates 
+							    -> the HTML when the data changes
+
+react also have another hooks like
+
+useState()
+
+useEffect()   -> lets us run some code after the component is created or updated
+
+useRef()		-> lets us automatically save an HTML element from the component
+
+useContext()
+
+use()
+
+and more ...
+
+
+details about hooks:
+
+-In react, we should put hooks at the top of the component
+-Hooks should not be inside anything
+
+
+example of how use this useEffect() hook
+
+
+React.useEffect(() => {
+          console.log('updated');  -> this will be display when the component is created or updated
+
+        }, []); 
+		
+
+this hook is waiting for 2 parameters, the first one is the function that we want to run
+
+React.useEffect(() => {
+          console.log('updated');  -> this the function that we are running 
+
+        }, []);   		   -> the second one is an array that controls when useEffect runs (if we give it an empty array useEffect only run once, 
+				   -> after the component is created
+
+
+another example
+
+React.useEffect(() => {
+          console.log('updated');  -> this the function that we are running 
+
+        }, [chatMessages]);   		   -> inside this array we can also run some data (this means, react will also run the console.log 			
+					   -> function everytime chatMessages changes
+					   -> is called a dependency array, it lets us control when useEffect runs
+
+
+hook useRef
+
+example to use it
+
+React.useRef();   -> this creates a ref, which is a container with special react features
+
+React.useRef(null); -> the value inside the brackets will be the initial value save inside this container.
+
+
+how to save html in this container
+example
+
+const chatMessagesRef = React.useRef(null);   -> basically we have to give to the html the ref variable as a prop and doing that, 
+					      -> we are getting in chatMessagesRef that html element 
+
+return (
+          <div 
+            className="chat-messages-container"
+            ref={chatMessagesRef} 			-> like this
+          >
+
+
+to access the html element save inside a ref, we have to use useEffect() hook 
+example
+
+const chatMessagesRef = React.useRef(null);
+
+        React.useEffect(() => {
+          
+          chatMessagesRef.current  -> this will be run after the component be created
+
+        }, [chatMessages]); 
+
+        return (
+          <div 
+            className="chat-messages-container"
+            ref={chatMessagesRef}
+          >
+
+
+
+LESSON 5: PROPER REACT SETUP
+
+Trough the command line we can do this setup
+
+
+some commands in the command line
+
+ mkdir -> this is a command to use in the terminal and it means make directory, this creates a new folder
+
+pwd -> (it means print working directory) this command is used to see in which directory we are
+
+ls -> (list ) this will list everything inside the folder that we are
+
+working directory -> is the current directory that we are 
+
+cd -> (it means change directory) this will change the directory to the one that we want
+
+cd .. -> this means the outer directory (is like going one step back)
+
+node -> this command let us run Js code outside of a browser 
+
+example
+
+node react-basics.js  -> the second parameter is the name of the file that we want to run, in this case we are running that file and we are 
+		      -> gonna receive the string 'hello' in our console because in that file we had console.log('hello');
+
+
+npm (node package manager) -> a package is an external library, this command let us install external libraries (or packages) into our project.
+
+example
+
+npm install supersimpledev -> here we are install the supersimpledev package 
+
+
+some packages of npm add a command to our command line 
+
+example
+
+package
+create-vite    =>install this package adds a command create-vite -> this command help us setup this new React project
+
+for use any command that is inside a package we have to following this 2 steps
+
+1. install the package
+
+2. run the command
+
+there is another way to do this 2 steps in just one using npx
+
+npx (node package execute) -> if we use this command following the example of create-vite we should type in the command line this
+			   ->npx create-vite 
+
+@ -> this is used to set a specific version of a package
+example
+
+npx create-vite@6.0.1
+
+then we have to put the project name
+then select the framework that we want to use
+then select a variant
+
+then we have to 2 this 3 steps to run this new project
+
+
+  cd chatbot-project -> name of the project
+  npm install   -> to install all the packages
+  npm run dev    -> to run the project 
+
+
+package.json-> has a list of packages that we need to install to run this project
+
+package-lock -> it saves the version numbers of all the packages that we installed
+
+
+features of vite 
+
+-vite is the tool that we used to set up a project.
+-vite helps us build the website (it takes the js and css an loads then into html file) 
+-vite also create a server, and this sercer refreshes the website when we make a change in our code.
+
+
+main.jsx => setup react 
